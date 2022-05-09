@@ -42,5 +42,19 @@ class Utilisateur extends Modele {
             throw new Exception("Aucun utilisateur ne correspond aux identifiants fournis");
     }
 
+    /** Renvoie la liste des utilisateurs du blog
+     * 
+     * @return PDOStatement La liste des utilisateurs
+     */
+    public function getUtilisateurs()
+    {
+        $sql = "SELECT id as idUtilisateur, email, mot_passe as motPasse 
+            FROM nrh_utilisateur";
+            
+        $utilisateurs = $this->executerRequete($sql);
+
+        return $utilisateurs;
+    }
+
 }
 

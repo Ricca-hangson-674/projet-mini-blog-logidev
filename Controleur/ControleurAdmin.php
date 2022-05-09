@@ -23,7 +23,9 @@ class ControleurAdmin extends Controleur // ControleurSecurise
 
     public function index()
     {
-        $nbarticles = $this->article->getNombreArticles();
+        $nbArticles = $this->article->getNombreArticles();
+
+        $articles = $this->article->getArticles();
 
         $nbCommentaires = $this->commentaire->getNombreCommentaires();
 
@@ -32,7 +34,8 @@ class ControleurAdmin extends Controleur // ControleurSecurise
 
         $this->genererVue(
             array(
-                'nbarticles' => $nbarticles, 
+                'articles' => $articles,
+                'nbArticles' => $nbArticles, 
                 'nbCommentaires' => $nbCommentaires, 
                 'login' => $login
             ), 

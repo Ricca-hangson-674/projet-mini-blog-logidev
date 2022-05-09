@@ -26,15 +26,21 @@ class ControleurArticle extends Controleur {
 
         $idArticle = intval($this->requete->getParametre("id"));
 
-        var_dump($idArticle);
-
         if ($idArticle) {
             $article = $this->article->getArticle($idArticle);
     
             $commentaires = $this->commentaire->getCommentaires($idArticle);
         }
+
+        #$utilisateur = $this->requete->getSession()->existeAttribut("idUtilisateur");
         
-        $this->genererVue(array('article' => $article, 'commentaires' => $commentaires));
+        $this->genererVue(
+            array(
+                'article' => $article, 
+                'commentaires' => $commentaires,
+                #'utilisateur' => $utilisateur
+            )
+        );
     }
 
     // Ajoute un commentaire sur un Article

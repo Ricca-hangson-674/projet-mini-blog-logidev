@@ -1,3 +1,5 @@
+<?php $this->titre = "Mon Blog - Utilisateurs" ?>
+
 <h2>Utilisateurs</h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -9,13 +11,15 @@
             </tr>
           </thead>
           <tbody>
+          <?php foreach ($utilisateurs as $utilisateur):?>
             <tr>
-              <td>1,001</td>
-              <td>random</td>
+              <td><?= $this->nettoyer($utilisateur['idUtilisateur']) ?></td>
+              <td><?= $this->nettoyer($utilisateur['email']) ?></td>
               <td>
-                <a href="" class="btn btn-danger">Supprimer</a>
+                <a href="<?= "adminUtilisateur/supprimer/" . $this->nettoyer($utilisateur['idUtilisateur']) ?>" class="btn btn-danger">Supprimer</a>
               </td>
             </tr>
+		      <?php endforeach; ?>
           </tbody>
         </table>
       </div>

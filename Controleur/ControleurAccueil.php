@@ -17,8 +17,8 @@ class ControleurAccueil extends Controleur {
     // Affiche la liste de tous les Articles du blog
     public function index() {
     	
-        $Articles = $this->article->getArticles();
-        $this->genererVue(array('articles' => $Articles));
+        $articles = $this->article->getArticles();
+        $this->genererVue(array('articles' => $articles));
     }
 
 }

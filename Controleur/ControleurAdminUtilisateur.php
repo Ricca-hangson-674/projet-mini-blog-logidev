@@ -20,8 +20,10 @@ class ControleurAdminUtilisateur extends Controleur // ControleurSecurise
 
     public function index()
     {
+        $utilisateurs = $this->utilisateur->getUtilisateurs();
+
         $this->genererVue(
-            [], 
+            ['utilisateurs' => $utilisateurs], 
             null,
             'back'
         );
