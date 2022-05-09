@@ -50,10 +50,11 @@ class ControleurAuthentification extends Controleur
                     $this->rediriger("accueil");
                 } else {
                     $this->genererVue(
-                        array('msgErreur' => 'email ou mot de passe incorrects'),
+                        array('msgErreur' => 'mot de passe incorrects'),
                         'connexion', 
                         'auth'
                     );
+                    return;
                 }
             } else {
                 $this->genererVue(
@@ -61,6 +62,7 @@ class ControleurAuthentification extends Controleur
                     'connexion', 
                     'auth'
                 );
+                return;
             }
         }
         else {
@@ -78,7 +80,7 @@ class ControleurAuthentification extends Controleur
         if (
             $this->requete->existeParametre("email") && 
             $this->requete->existeParametre("mot_passe") && 
-            $this->requete->existeParametre("mot_passe") == $this->requete->existeParametre("confirm_mot_passe")
+            $this->requete->existeParametre("confirm_mot_passe")
         ) {
             $email = $this->requete->getParametre("email");
             $mdp = $this->requete->getParametre("mot_passe");
@@ -90,6 +92,8 @@ class ControleurAuthentification extends Controleur
                     'inscription', 
                     'auth'
                 );
+
+                return;
             }
     
             $this->utilisateur->ajouterUtilisateur($email, $mdp);

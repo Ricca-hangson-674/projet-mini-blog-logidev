@@ -4,9 +4,7 @@
 
 require 'Framework/Routeur.php';
 
-
-if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || 
-	strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) {
+if (strpos($_SERVER['HTTP_HOST'], '127.0.0.1:8000') !== false) {
 
 	$chaine = explode("/", ltrim($_SERVER["REQUEST_URI"], '/'));
 
