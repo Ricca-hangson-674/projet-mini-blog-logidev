@@ -19,12 +19,18 @@
   			<div class="col-md-12">
   				<h2>Laisser un commentaire</h2>
 
+				<?php if (isset($success) && $success != ''): ?>
+					<div class="alert alert-success" role="alert">
+						<p><?= $success ?></p>
+					</div>
+				<?php endif; ?>
+
   				<form action="article/commenter" method="post">
   					<div class="mb-3">
-					  <textarea class="form-control" id="contenu" name="contenu" rows="3"></textarea>
+					  <textarea required class="form-control" id="contenu" name="contenu" rows="3"></textarea>
 					</div>
 
-					<input type="hidden" name="id" value="<?= $billet['id'] ?>" />
+					<input type="hidden" name="id" value="<?= $article['id'] ?>" />
 
 					<button type="submit" class="btn btn-secondary">Commenter</button>
   				</form>
@@ -43,7 +49,10 @@
 						<h5 class="card-title"><?= $this->nettoyer($commentaire['auteur']) ?></h5>
 						<p class="card-tes"><?= $this->nettoyer($commentaire['dateCreation']) ?></p>
 						<p class="card-text"><?= $this->nettoyer($commentaire['contenu']) ?></p>
-						<a href="#" class="btn btn-danger">Supprimer</a>
+
+						<?php if ($commentaire['idUtilisateur'] == $idUtilisateur): ?>
+							<a href="<?= "article/supprimerCommentaire/" . $this->nettoyer($commentaire['id']) ?>" class="btn btn-danger">Supprimer</a>
+						<?php endif ?>
 					</div>
 					</div>
 				</div>

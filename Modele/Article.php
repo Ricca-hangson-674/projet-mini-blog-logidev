@@ -92,9 +92,7 @@ class Article extends Modele {
      */
     public function supprimerArticle($idArticle)
     {
-        $sql = 'DELETE FROM nrh_article WHERE '
-            . ' WHERE id=?'
-            ;
+        $sql = 'DELETE FROM nrh_article WHERE id=?';
 
         $this->executerRequete($sql, array($idArticle));
     }

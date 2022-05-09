@@ -1,12 +1,13 @@
 <?php
 
+require_once 'ControleurSecurise.php';
 require_once 'Framework/Controleur.php';
 require_once 'Modele/Article.php';
 
 /**
  * Contrôleur gérant la page accueil front office au site
  */
-class ControleurAccueil extends Controleur {
+class ControleurAccueil extends ControleurSecurise {
 
     private $article;
 
@@ -16,9 +17,11 @@ class ControleurAccueil extends Controleur {
 
     // Affiche la liste de tous les Articles du blog
     public function index() {
+
+        $utilisateur = $this->requete->getSession()->getAttribut("login");
     	
         $articles = $this->article->getArticles();
-        $this->genererVue(array('articles' => $articles));
+        $this->genererVue(array('articles' => $articles, 'utilisateur' => $utilisateur));
     }
 
 }

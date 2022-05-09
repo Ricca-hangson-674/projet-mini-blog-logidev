@@ -14,7 +14,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <span class="text-white fw-700">admin@amdin.com</span>
+  <span class="text-white fw-700"><?= $utilisateur ?></span>
 
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">

@@ -7,7 +7,7 @@ require_once 'Modele/Commentaire.php';
 /**
  * Contrôleur des actions d'administration
  */
-class ControleurAdmin extends Controleur // ControleurSecurise
+class ControleurAdmin extends ControleurSecurise
 {
     private $article;
     private $commentaire;
@@ -29,15 +29,14 @@ class ControleurAdmin extends Controleur // ControleurSecurise
 
         $nbCommentaires = $this->commentaire->getNombreCommentaires();
 
-        # $login = $this->requete->getSession()->getAttribut("login");
-        $login = null;
+        $login = $this->requete->getSession()->getAttribut("login");
 
         $this->genererVue(
             array(
                 'articles' => $articles,
                 'nbArticles' => $nbArticles, 
                 'nbCommentaires' => $nbCommentaires, 
-                'login' => $login
+                'utilisateur' => $login
             ), 
             null,
             'back'

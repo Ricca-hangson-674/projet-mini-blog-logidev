@@ -1,12 +1,13 @@
 <?php
 
+require_once 'ControleurSecurise.php';
 require_once 'Framework/Controleur.php';
 require_once 'Modele/Article.php';
 require_once 'Modele/Commentaire.php';
 /**
  * Contrôleur des actions liées aux articles
  */
-class ControleurArticle extends Controleur {
+class ControleurArticle extends ControleurSecurise {
 
     private $article;
     private $commentaire;
@@ -30,31 +31,46 @@ class ControleurArticle extends Controleur {
             $article = $this->article->getArticle($idArticle);
     
             $commentaires = $this->commentaire->getCommentaires($idArticle);
-        }
-
-        #$utilisateur = $this->requete->getSession()->existeAttribut("idUtilisateur");
         
-        $this->genererVue(
-            array(
-                'article' => $article, 
-                'commentaires' => $commentaires,
-                #'utilisateur' => $utilisateur
-            )
-        );
+            $this->genererVue(
+                array(
+                    'article' => $article, 
+                    'commentaires' => $commentaires,
+                    'utilisateur' => $this->requete->getSession()->getAttribut("login"),
+                    'idUtilisateur' => $this->requete->getSession()->getAttribut("idUtilisateur")
+                )
+            );
+        }
     }
 
     // Ajoute un commentaire sur un Article
     public function commenter() {
         $idArticle = $this->requete->getParametre("id");
         $contenu = $this->requete->getParametre("contenu");
-        
-        $auteur = $this->requete->getSession()->existeAttribut("idUtilisateur");
-        #$auteur = $this->requete->getParametre("auteur");
-        
-        $this->commentaire->ajouterCommentaire($auteur, $contenu, $idArticle);
-        
-        // Exécution de l'action par défaut pour réafficher la liste des Articles
-        $this->executerAction("index");
+
+        if ($this->requete->getSession()->existeAttribut("idUtilisateur")) {
+            $auteur = $this->requete->getSession()->getAttribut("idUtilisateur");
+
+            $this->commentaire->ajouterCommentaire($auteur, $contenu, $idArticle);
+
+            // Exécution de l'action par défaut pour réafficher l'article
+            $this->executerAction("index");
+        }
+    }
+
+    public function supprimerCommentaire()
+    {
+        if ($this->requete->existeParametre("id")) 
+        {
+            $id = $this->requete->getParametre("id");
+
+            $commentaire = $this->commentaire->getCommentaire($id);
+
+            $this->commentaire->supprimerCommentaire($id);
+    
+            // Exécution de l'action par défaut pour réafficher l'article
+            $this->rediriger("article", "index", $commentaire['idArticle']);
+        }
     }
 }
 

@@ -62,7 +62,9 @@ class Vue
                     array(
                         'titre' => $this->titre, 
                         'contenu' => $contenu, 
-                        'racineWeb' => $racineWeb
+                        'racineWeb' => $racineWeb,
+                        'msgErreur' => isset($donnees['msgErreur']) ? $donnees['msgErreur'] : null,
+                        'success' => isset($donnees['success']) ? $donnees['success'] : null
                     ))
                 ;
                 break;
@@ -71,7 +73,8 @@ class Vue
                     array(
                         'titre' => $this->titre, 
                         'contenu' => $contenu, 
-                        'racineWeb' => $racineWeb
+                        'racineWeb' => $racineWeb,
+                        'utilisateur' => isset($donnees['utilisateur']) ? $donnees['utilisateur'] : ''
                     ))
                 ;
                 break;
@@ -81,7 +84,8 @@ class Vue
                     array(
                         'titre' => $this->titre, 
                         'contenu' => $contenu, 
-                        'racineWeb' => $racineWeb
+                        'racineWeb' => $racineWeb,
+                        'utilisateur' => isset($donnees['utilisateur']) ? $donnees['utilisateur'] : ''
                     ))
                 ;
                 break;

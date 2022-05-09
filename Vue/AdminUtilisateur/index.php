@@ -7,7 +7,6 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Email</th>
-              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -15,9 +14,6 @@
             <tr>
               <td><?= $this->nettoyer($utilisateur['idUtilisateur']) ?></td>
               <td><?= $this->nettoyer($utilisateur['email']) ?></td>
-              <td>
-                <a href="<?= "adminUtilisateur/supprimer/" . $this->nettoyer($utilisateur['idUtilisateur']) ?>" class="btn btn-danger">Supprimer</a>
-              </td>
             </tr>
 		      <?php endforeach; ?>
           </tbody>

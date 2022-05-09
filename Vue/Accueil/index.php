@@ -1,4 +1,5 @@
-<?php $this->titre = "Mon Blog - Accueil" ?>
+<?php 
+$this->titre = "Mon Blog - Accueil"?>
 		
 		<div class="row mb-2">
 		<?php foreach ($articles as $article):?>

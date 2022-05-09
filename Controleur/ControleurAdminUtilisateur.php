@@ -6,7 +6,7 @@ require_once 'Modele/Utilisateur.php';
 /**
  * Contrôleur des actions d'administration
  */
-class ControleurAdminUtilisateur extends Controleur // ControleurSecurise
+class ControleurAdminUtilisateur extends ControleurSecurise
 {
     private $utilisateur;
 
