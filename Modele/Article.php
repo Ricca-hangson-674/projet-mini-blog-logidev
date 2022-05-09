@@ -17,7 +17,7 @@ class Article extends Modele {
                 . ' nrh_utilisateur.email as auteur'
                 . ' FROM nrh_article'
                 . ' INNER JOIN nrh_utilisateur ' 
-                . ' ON nrh_article.utilisateur_id = nrh_utilisateur.id'
+                . ' ON nrh_article.auteur_id = nrh_utilisateur.id'
                 . ' ORDER by id desc'
         ;
 
@@ -38,8 +38,8 @@ class Article extends Modele {
                 . ' nrh_utilisateur.email as auteur'
                 . ' FROM nrh_article'
                 . ' INNER JOIN nrh_utilisateur ' 
-                . ' ON nrh_article.utilisateur_id = nrh_utilisateur.id'
-                . ' WHERE id=?'
+                . ' ON nrh_article.auteur_id = nrh_utilisateur.id'
+                . ' WHERE nrh_article.id=?'
         ;
 
         $article = $this->executerRequete($sql, array($idArticle));
@@ -80,7 +80,7 @@ class Article extends Modele {
      */
     public function modifierArticle($idArticle, $auteur, $titre, $contenu)
     {
-        $sql = 'UPDATE nrh_article SET utilisateur_id=?, titre=?, contenu=?'
+        $sql = 'UPDATE nrh_article SET auteur_id=?, titre=?, contenu=?'
             . ' WHERE id=?'
             ;
 

@@ -19,7 +19,7 @@ abstract class ControleurSecurise extends Controleur
             parent::executerAction($action);
         }
         else {
-            $this->rediriger("connexion");
+            $this->rediriger("authentification");
         }
     }
 

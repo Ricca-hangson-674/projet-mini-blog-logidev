@@ -21,11 +21,18 @@ class ControleurArticle extends Controleur {
 
     // Affiche les détails sur un Article
     public function index() {
-        $idArticle = $this->requete->getParametre("id");
-        
-        $article = $this->article->getArticle($idArticle);
+        $article = null;
+        $commentaires = [];
 
-        $commentaires = $this->commentaire->getCommentaires($idArticle);
+        $idArticle = intval($this->requete->getParametre("id"));
+
+        var_dump($idArticle);
+
+        if ($idArticle) {
+            $article = $this->article->getArticle($idArticle);
+    
+            $commentaires = $this->commentaire->getCommentaires($idArticle);
+        }
         
         $this->genererVue(array('article' => $article, 'commentaires' => $commentaires));
     }

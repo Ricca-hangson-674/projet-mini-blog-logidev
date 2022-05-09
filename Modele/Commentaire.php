@@ -11,14 +11,14 @@ class Commentaire extends Modele {
     public function getCommentaires($idArticle) {
         $sql = 'SELECT nrh_commentaire.id as id, nrh_commentaire.date_creation as dateCreation,'
                 . ' nrh_commentaire.contenu as contenu,'
-                . ' nrh_utilisateur.email as auteur'
+                . ' nrh_utilisateur.email as auteur,'
                 . ' nrh_article.titre as titre'
                 . ' FROM nrh_commentaire'
                 . ' INNER JOIN nrh_utilisateur ' 
-                . ' ON nrh_commentaire.utilisateur_id = nrh_utilisateur.id'
+                . ' ON nrh_commentaire.auteur_id = nrh_utilisateur.id'
                 . ' INNER JOIN nrh_article ' 
                 . ' ON nrh_commentaire.article_id = nrh_article.id'
-                . ' WHERE article_id=?'
+                . ' WHERE nrh_commentaire.article_id=?'
         ;
         $commentaires = $this->executerRequete($sql, array($idArticle));
 

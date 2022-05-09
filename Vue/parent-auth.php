@@ -8,14 +8,16 @@
         <title><?= $titre ?></title>
     </head>
     <body class="text-center">
-        <h1>AUTHENTIFICATION</h1>
-
-        <div id="contenu">
-                <?= $contenu ?>
-            </div> <!-- #contenu -->
 
         <?php if (isset($msgErreur)): ?>
+        <div class="alert alert-danger" role="alert">
             <p><?= $msgErreur ?></p>
+        </div>
         <?php endif; ?>
+        
+
+        <main class="form-signin">
+            <?= $contenu ?>
+        </main>
     </body>
 </html>
